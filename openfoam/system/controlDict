@@ -1,0 +1,116 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs (fvMotionSolvers libcontrolled6DoFMotion_v2);
+
+
+DebugSwitches
+{
+    overset                 0; 	//0 off - 1 give more information
+    dynamicOversetFvMesh    0;
+    cellVolumeWeight        0;
+    inverseDistance	    0;	//2 Force dumping of cellInterpolationWeight
+    displacementLaplacian   1;
+    motionDiffusivity   1;
+//    volPointInterpolation   1;
+}
+
+application     pimpleFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         3;
+
+deltaT          0.0001;
+
+writeControl    timeStep;
+
+writeInterval   1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  10;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+adjustTimeStep  no;
+
+maxCo           1;
+
+functions
+{
+	preCICE_Adapter
+    {
+        type preciceAdapterFunctionObject;
+        libs ("libpreciceAdapterFunctionObject_debug.so");
+    }
+	vorticity1
+	{
+	// Mandatory entries
+	type            vorticity;
+	libs            (fieldFunctionObjects);
+
+	// Optional (inherited) entries
+	field           U;
+	result          vorticityField;
+	//region          region0;
+	writeToFile     true;
+	enabled         true;
+	log             off;
+	executeControl  timeStep;
+	executeInterval 1;
+	writeControl    writeTime;
+	writeInterval   1;
+	}
+
+	fieldMinMax1
+	{
+		type		fieldMinMax;
+		libs		(fieldFunctionObjects);
+
+
+		mode		magnitude;
+		fields		(k omega U p);
+		location	true;
+		writeToFile	true;
+		executeControl	timeStep;
+		executeInterval	1;
+		writeControl	timeStep;
+		writeInterval	1;
+	}
+
+	writeDictionary1
+	{
+		type        writeDictionary;
+		libs        ("libutilityFunctionObjects.so");
+		dictNames   (fvSchemes fvSolution);
+	}
+}
+
+
+// ************************************************************************* //

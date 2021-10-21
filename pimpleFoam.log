@@ -1,0 +1,200 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2012                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _e91649cfd8-20210420 OPENFOAM=2012 patch=210414
+Arch   : "LSB;label=32;scalar=64"
+Exec   : pimpleFoam -case openfoam
+Date   : Oct 21 2021
+Time   : 14:21:08
+Host   : scw-a5ymyf
+PID    : 20391
+I/O    : uncollated
+Case   : /home/julian/software/mbdyn-adapter/working6DoF_singleBlade_2/openfoam
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Overriding DebugSwitches according to controlDict
+    overset (unregistered)
+    dynamicOversetFvMesh (unregistered)
+    cellVolumeWeight 0;
+
+    inverseDistance 0;
+
+    displacementLaplacian 1;
+
+    motionDiffusivity 1;
+
+Create mesh for time = 0
+
+Selecting dynamicFvMesh dynamicMotionSolverFvMesh
+Selecting motion solver: displacementLaplacian
+Applying solid body motion to entire mesh
+Selecting motion diffusion: uniform
+displacementLaplacianFvMotionSolver:
+    diffusivity       : uniform
+    frozenPoints zone : -1
+
+PIMPLE: no residual control data found. Calculations will employ 4 corrector loops
+
+Reading field p
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type laminar
+Selecting laminar stress model Stokes
+No MRF models present
+
+No finite volume options present
+Constructing face velocity Uf
+
+Courant Number mean: 0 max: 0
+
+Starting time loop
+
+---[preciceAdapter] Loaded the OpenFOAM-preCICE adapter - unreleased version.
+---[preciceAdapter] Reading preciceDict...
+---[preciceAdapter] [DEBUG]   precice-config-file : precice-config.xml
+---[preciceAdapter] [DEBUG]   participant name    : Fluid
+---[preciceAdapter] [DEBUG]   modules requested   : 
+---[preciceAdapter] [DEBUG]   - FSI
+
+---[preciceAdapter] [DEBUG]   interfaces : 
+---[preciceAdapter] [DEBUG]   - mesh         : Fluid-Mesh
+---[preciceAdapter] [DEBUG]     locations    : faceNodes
+---[preciceAdapter] [DEBUG]     connectivity : 0
+---[preciceAdapter] [DEBUG]     patches      : 
+---[preciceAdapter] [DEBUG]       - airfoil
+---[preciceAdapter] [DEBUG]     writeData    : 
+---[preciceAdapter] [DEBUG]       - Force_Data
+---[preciceAdapter] [DEBUG]     readData     : 
+---[preciceAdapter] [DEBUG]       - Displacement_Data
+---[preciceAdapter] [DEBUG] Configuring the FSI module...
+---[preciceAdapter] [DEBUG]     user-defined solver type : 
+---[preciceAdapter] [DEBUG]     pointDisplacement field name : pointDisplacement
+---[preciceAdapter] [DEBUG]     cellDisplacement field name : cellDisplacement
+---[preciceAdapter] [DEBUG] Determining the solver type for the FSI module... (override by setting solverType to one of {compressible, incompressible})
+---[preciceAdapter] [DEBUG] Automatically determined solver type : incompressible
+---[preciceAdapter] [DEBUG] Checking the timestep type (fixed vs adjustable)...
+---[preciceAdapter] [DEBUG]   Timestep type: fixed.
+---[preciceAdapter] [DEBUG] Creating the preCICE solver interface...
+---[preciceAdapter] [DEBUG]   Number of processes: 1
+---[preciceAdapter] [DEBUG]   MPI rank: 0
+---[precice] [0m This is preCICE version 2.2.0
+---[precice] [0m Revision info: v2.2.0
+---[precice] [0m Configuration: Release (Debug and Trace log unavailable)
+---[precice] [0m Configuring preCICE with configuration "precice-config.xml"
+---[precice] [0m I am participant "Fluid"
+---[preciceAdapter] [DEBUG]   preCICE solver interface was created.
+---[preciceAdapter] [DEBUG] Creating interfaces...
+---[preciceAdapter] [DEBUG] Number of face nodes: 316
+---[preciceAdapter] [DEBUG] Interface created on mesh Fluid-Mesh
+---[preciceAdapter] [DEBUG] Adding coupling data writers...
+---[preciceAdapter] [DEBUG] Added writer: Force.
+---[preciceAdapter] [DEBUG] Adding coupling data readers...
+---[preciceAdapter] [DEBUG] Added reader: Displacement.
+---[preciceAdapter] [DEBUG] Initalizing the preCICE solver interface...
+---[precice] [0m Setting up master communication to coupling partner/s
+---[precice] [0m Masters are connected
+---[precice] [0m Setting up preliminary slaves communication to coupling partner/s
+---[precice] [0m Prepare partition for mesh Fluid-Mesh
+---[precice] [0m Receive global mesh Solid-Mesh
+---[precice] [0m Setting up slaves communication to coupling partner/s
+---[precice] [0m Slaves are connected
+---[precice] [0m iteration: 1, time-window: 1, time: 0 of 10, time-window-size: 0.0001, max-timestep-length: 0.0001, ongoing: yes, time-window-complete: no, 
+---[preciceAdapter] [DEBUG] Initializing preCICE data...
+#0  Foam::error::printStack(Foam::Ostream&) at ??:?
+#1  Foam::sigFpe::sigHandler(int) at ??:?
+#2  ? in /lib/x86_64-linux-gnu/libpthread.so.0
+#3  ? at scalarmath.c:?
+#4  PyNumber_Multiply in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#5  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#6  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#7  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#8  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#9  _PyEval_EvalCodeWithName in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#10  PyEval_EvalCodeEx in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#11  PyEval_EvalCode in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#12  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#13  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#14  PyVectorcall_Call in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#15  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#16  _PyEval_EvalCodeWithName in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#17  _PyFunction_Vectorcall in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#18  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#19  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#20  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#21  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#22  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#23  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#24  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#25  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#26  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#27  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#28  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#29  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#30  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#31  _PyObject_CallMethodIdObjArgs in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#32  PyImport_ImportModuleLevelObject in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#33  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#34  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#35  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#36  _PyEval_EvalCodeWithName in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#37  _PyFunction_Vectorcall in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#38  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#39  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#40  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#41  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#42  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#43  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#44  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#45  _PyObject_CallMethodIdObjArgs in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#46  PyImport_ImportModuleLevelObject in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#47  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#48  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#49  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#50  _PyEval_EvalCodeWithName in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#51  _PyFunction_Vectorcall in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#52  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#53  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#54  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#55  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#56  _PyEval_EvalFrameDefault in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#57  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#58  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#59  _PyObject_CallMethodIdObjArgs in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#60  PyImport_ImportModuleLevelObject in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#61  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#62  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#63  _PyObject_MakeTpCall in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#64  ? in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#65  PyObject_CallFunction in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#66  PyImport_Import in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#67  PyImport_ImportModule in /lib/x86_64-linux-gnu/libpython3.8.so.1.0
+#68  precice::action::PythonAction::makeNumPyArraysAvailable() in /lib/x86_64-linux-gnu/libprecice.so.2
+#69  precice::action::PythonAction::initialize() in /lib/x86_64-linux-gnu/libprecice.so.2
+#70  precice::action::PythonAction::performAction(double, double, double, double) in /lib/x86_64-linux-gnu/libprecice.so.2
+#71  precice::impl::SolverInterfaceImpl::performDataActions(std::set<precice::action::Action::Timing, std::less<precice::action::Action::Timing>, std::allocator<precice::action::Action::Timing> > const&, double, double, double, double) in /lib/x86_64-linux-gnu/libprecice.so.2
+#72  precice::impl::SolverInterfaceImpl::initializeData() in /lib/x86_64-linux-gnu/libprecice.so.2
+#73  preciceAdapter::Adapter::initialize() at ??:?
+#74  preciceAdapter::Adapter::configure() at ??:?
+#75  Foam::functionObjects::preciceAdapterFunctionObject::read(Foam::dictionary const&) at ??:?
+#76  Foam::functionObjects::preciceAdapterFunctionObject::preciceAdapterFunctionObject(Foam::word const&, Foam::Time const&, Foam::dictionary const&) at ??:?
+#77  Foam::functionObject::adddictionaryConstructorToTable<Foam::functionObjects::preciceAdapterFunctionObject>::New(Foam::word const&, Foam::Time const&, Foam::dictionary const&) at ??:?
+#78  Foam::functionObject::New(Foam::word const&, Foam::Time const&, Foam::dictionary const&) at ??:?
+#79  Foam::functionObjectList::read() at ??:?
+#80  Foam::Time::run() const at ??:?
+#81  ? in /usr/lib/openfoam/openfoam2012/platforms/linux64GccDPInt32Opt/bin/pimpleFoam
+#82  __libc_start_main in /lib/x86_64-linux-gnu/libc.so.6
+#83  ? in /usr/lib/openfoam/openfoam2012/platforms/linux64GccDPInt32Opt/bin/pimpleFoam
